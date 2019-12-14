@@ -1,0 +1,19 @@
+{
+    "name": "randomdata",
+    "description": "Creates Random Data",
+
+    "require": {
+        "php": ">=7.2",
+        "monolog/monolog": "^1.17",
+        "mpdf/mpdf": "^8.0",
+        "mpdf/qrcode": "^1.0",
+        "slim/slim": "^3.1",
+        "slim/twig-view": "^2.5",
+        "twig/twig": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "RandomData\\": "src/"
+        }
+    }
+}

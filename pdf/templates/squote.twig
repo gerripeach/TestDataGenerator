@@ -1,0 +1,246 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>A simple, clean, and responsive HTML invoice template</title>
+    
+    <style>
+    .invoice-box {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #eee;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+        font-size: 16px;
+        line-height: 24px;
+        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+        color: #555;
+    }
+    
+    .invoice-box table {
+        width: 100%;
+        line-height: inherit;
+        text-align: left;
+    }
+    
+    .invoice-box table td {
+        padding: 5px;
+        vertical-align: top;
+    }
+    
+    .invoice-box table tr td:nth-child(2) {
+        text-align: right;
+    }
+    
+    .invoice-box table tr.top table td {
+        padding-bottom: 20px;
+    }
+    
+    .invoice-box table tr.top table td.title {
+        font-size: 45px;
+        line-height: 45px;
+        color: #333;
+    }
+    
+    .invoice-box table tr.information table td {
+        padding-bottom: 40px;
+    }
+    
+    .invoice-box table tr.heading td {
+        background: #eee;
+        border-bottom: 1px solid #ddd;
+        font-weight: bold;
+    }
+    
+    .invoice-box table tr.details td {
+        padding-bottom: 20px;
+    }
+    
+    .invoice-box table tr.item td{
+        border-bottom: 1px solid #eee;
+    }
+    
+    .invoice-box table tr.item.last td {
+        border-bottom: none;
+    }
+    
+    .invoice-box table tr.total td:nth-child(2) {
+        border-top: 2px solid #eee;
+        font-weight: bold;
+    }
+    
+    @media only screen and (max-width: 600px) {
+        .invoice-box table tr.top table td {
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+        
+        .invoice-box table tr.information table td {
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+    }
+    
+    /** RTL **/
+    .rtl {
+        direction: rtl;
+        font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    }
+    
+    .rtl table {
+        text-align: right;
+    }
+    
+    .rtl table tr td:nth-child(2) {
+        text-align: left;
+    }
+
+
+    .ta-right {
+        text-align: right;
+    }
+    .ta-left {
+        text-align: left;
+    }
+    .ta-center {
+        text-align: center;
+    }
+
+    @page {
+        margin-top: 40mm; /* Header Config */
+        margin-bottom: 20mm;
+    }
+
+    body {
+    font-size: 0.8em; /* currently ems cause chrome bug misinterpreting rems on body element */
+    line-height: 1.6;
+    font-weight: 400;
+    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #222; }
+
+    </style>
+
+</head>
+
+<body>
+{% include 'headerAndFooter.twig' %}
+    <sethtmlpageheader name="myheader" value="on" show-this-page="1" />
+    <sethtmlpagefooter name="myfooter" value="on" />
+
+
+
+    <div class="invoice-box">
+
+
+        <table cellpadding="0" cellspacing="0">
+            
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                <small>Borstel AG Bahnhofsstraße 42 93672 Lummerland</small><br>
+                                
+                                {{ data.company.name }}<br>
+                                {{ data.company.adress.street }} {{ data.company.adress.buildingNumber }}<br>
+                                {{ data.company.adress.zipCode }} {{ data.company.adress.city }}
+                            </td>
+                            
+                            <td>
+                                <b>Angebotsnummer:</b> {{ data.invoice.id }}<br>
+                                <b>Angebotsdatum:</b> {{ data.invoice.date }}<br>
+                                <b>Kundennummer:</b> {{ data.company.customerId }}<br>
+                                <b>Ansprechpartner:</b> {{ data.invoice.contact }}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+    
+
+            <tr>
+                <td>
+                    Sehr geehrte Damen und Herren<br>
+                    vielen Danke für ihre Anfrage. Ich freue mich sehr, ihnen dieses Angebot zu unterbreiten.
+                </td>
+            </tr>
+
+            <tr >
+                <td>
+                    &nbsp;
+                </td>
+            </tr>
+            
+            <tr class="heading">
+                <td>
+                    Artikel
+                </td>
+                
+                <td>
+                    Preis
+                </td>
+            </tr>
+            
+            <tr class="item">
+                <td>
+                    Design der Webseite
+                </td>
+                
+                <td>
+                    300€
+                </td>
+            </tr>
+            
+            <tr class="item">
+                <td>
+                    Hosting (3 Monate)
+                </td>
+                
+                <td>
+                    75€
+                </td>
+            </tr>
+            
+            <tr class="item last">
+                <td>
+                    Domain Name (1 Jahr)
+                </td>
+                
+                <td>
+                    10€
+                </td>
+            </tr>
+            
+            <tr class="total">
+                <td></td>
+                
+                <td>
+                   Gesamt: 385€
+                </td>
+            </tr>
+
+            <tr >
+                <td>
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Wir freuen uns wenn dieses Angebot Ihre Zustimmung findet.<br>
+                    Bei Rückfragen stehen wir Ihnen gerne zur Verfügung.<br><br>
+
+                    Mit freundlichen Grüßen<br>
+                    {{ data.invoice.contact }}
+                </td>
+
+                <td>
+                    <barcode code="{{ data.general.barcodeContent }}" type="QR" class="barcode" size="0.7" error="L" disableborder="1" />
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</body>
+</html>
